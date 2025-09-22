@@ -1,74 +1,90 @@
 # Trend Insight: Stock Forecasting & Portfolio Optimization
 
-## Project Overview
-This project explores the effectiveness of LSTM models in predicting stock prices and understanding market trends. By analyzing historical data, the model attempts to forecast future stock prices and assess the accuracy of trend predictions across various stocks. Following the prediction phase, the project focuses on portfolio optimization to construct a less risky investment strategy by minimizing variance while achieving desired returns.
 
-## Features
-- **Data Loading:** Load data from Yahoo Finance.
-- **Data Preprocessing:** Normalize and reshape stock data for LSTM input.
-- **Model Training:** Train an LSTM model on historical stock data to predict future prices.
-- **Prediction:** Forecast future stock prices and analyze trend predictions.
-- **Trend Matching:** Compare predicted trends with actual trends and count matching trends.
-- **Visualization:** Plot actual vs. predicted stock prices for visual analysis.
-- **Portfolio Optimization:** Optimize a portfolio of selected stocks to minimize risk while meeting return expectations.
+## Project Overview 📈
 
-## Main Libraries Used
-- Python 3.x
-- NumPy
-- Pandas
-- Scikit-learn
-- TensorFlow / Keras
-- Matplotlib
-- Joblib
-- Tabulate
+This project leverages Long Short-Term Memory (LSTM) networks to predict stock prices and construct optimized investment portfolios. By analyzing historical stock data and various technical indicators, the model forecasts future stock prices and evaluates the accuracy of these predictions. The ultimate goal is to create a risk-minimized portfolio that achieves a desired return, providing a data-driven approach to investment strategy.
 
-## Data Collection
-The data for this project is collected from Yahoo Finance, focusing on daily closing prices of various stocks.
+---
 
-## Model Training and Prediction
+## Features ✨
 
-### Data Preprocessing:
-- Normalize each stock's closing prices using `MinMaxScaler`.
-- Split the data into training (95%) and testing (5%) sets.
+* **Data Collection**: Fetches historical stock data from Yahoo Finance.
+* **Data Preprocessing**: Cleans, normalizes, and reshapes data for LSTM model input.
+* **Feature Engineering**: Utilizes technical indicators like **RSI, VWAP, EMA, and MACD** to enhance predictive accuracy.
+* **Model Training**: Trains an LSTM model on historical data to forecast future closing prices.
+* **Trend Prediction and Analysis**: Forecasts future stock prices and analyzes trend direction for the last 50 days.
+* **Portfolio Optimization**: Constructs a portfolio of selected stocks with minimized risk (variance) for a target return.
+* **Visualization**: Plots actual vs. predicted stock prices for clear visual analysis of model performance.
 
-### Model Architecture:
-- The LSTM model consists of two LSTM layers with 128 and 64 units, respectively.
-- The model is trained to predict the next day's closing price using the past 100 days of data.
+---
 
-### Prediction:
-- After training, the model generates predictions on the test data.
-- The performance is evaluated using root mean square error (RMSE).
+## Technical Stack 🛠️
 
-## Trend Analysis
-The project examines the trends (whether prices increase or decrease) of the actual and predicted stock prices:
+* **Python 3.x**
+* **Jupyter Notebook**
+* **Libraries**:
+    * Pandas
+    * NumPy
+    * Scikit-learn
+    * TensorFlow / Keras
+    * Matplotlib
+    * Seaborn
+    * yfinance
+    * Joblib
+    * Tabulate
+    * SciPy
+    * ta
 
-### Trend Calculation:
-- Trends for both actual and predicted prices are calculated based on the difference between consecutive days.
+---
 
-### Trend Matching:
-- The trends for the last 50 days are compared, and the number of matching trends between actual and predicted values is counted.
+## Methodology ⚙️
 
-## Portfolio Optimization
-Beyond stock price prediction, the project also delves into portfolio optimization. The goal is to create an optimized portfolio that minimizes risk (variance) while meeting a specific return threshold. This optimization is conducted on the following stocks:
-- TCS
-- NESTLEIND
-- TITAN
-- ASTRAL
-- TATAPOWER
-- SUZLON
-- HINDPETRO
-- HDFCBANK
-- INFY
-- ULTRACEMCO
-- MAHLIFE
-- ADANIGREEN
+### 1. Data Collection and Preprocessing
 
-The optimization ensures that the sum of weights equals 1, with all weights being non-negative, to strike a balance between risk and return.
+* Historical daily closing prices for a list of stocks are downloaded from **Yahoo Finance**.
+* The data for each stock is individually normalized using **MinMaxScaler** from Scikit-learn to scale the values between 0 and 1. This helps the LSTM model converge more effectively.
+* The dataset is split into a **95% training set** and a **5% testing set**.
 
-## Results
-For each stock, the project provides:
-- The RMSE of the LSTM model.
-- A plot comparing actual vs. predicted prices.
-- The number of matching trends for the last 50 days.
-- The predicted price for the next day.
-- An optimized portfolio of the listed stocks.
+### 2. LSTM Model for Price Prediction
+
+* An LSTM network is employed to capture long-term dependencies in the stock price data. The model is trained to predict the next day's closing price based on the **past 100 days** of data.
+* The model architecture consists of two LSTM layers with **128 and 64 units**, respectively, followed by a Dense output layer.
+* The model's performance is evaluated using the **Root Mean Square Error (RMSE)**.
+
+### 3. Trend Analysis
+
+* The project analyzes the directional trend (up or down) of both the actual and predicted stock prices.
+* The trend for the **last 50 days** is compared between the predicted and actual values to count the number of matching trend predictions.
+
+### 4. Portfolio Optimization
+
+* This project extends beyond simple price prediction to create an optimized, risk-averse investment portfolio.
+* The optimization is performed on the following stocks:
+    * TCS.NS
+    * NESTLEIND.NS
+    * TITAN.NS
+    * ASTRAL.BO
+    * TATAPOWER.NS
+    * SUZLON.NS
+    * HINDPETRO.BO
+    * HDFCBANK.NS
+    * INFY.NS
+    * ULTRACEMCO.NS
+    * MAHLIFE.BO
+    * ADANIGREEN.BO
+* The objective is to **minimize the portfolio's variance (risk)** while ensuring it meets a specified return threshold.
+* The optimization ensures that the sum of the weights of all stocks in the portfolio is equal to 1, with all weights being non-negative.
+
+---
+
+## Results 📊
+
+For each stock analyzed, the project provides:
+* The **RMSE** of the LSTM model's predictions.
+* A **comparative plot** of actual vs. predicted stock prices.
+* The number of **matching trend predictions** for the last 50 days.
+* The **predicted closing price** for the next trading day.
+* An **optimized portfolio** with calculated weights for each stock, designed to balance risk and return.
+
+---
